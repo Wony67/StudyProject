@@ -18,6 +18,8 @@ const state = {
 const elements = {
   pastMode: document.querySelector("#past-mode-button"),
   expectedMode: document.querySelector("#expected-mode-button"),
+  mobilePastMode: document.querySelector("#mobile-past-mode-button"),
+  mobileExpectedMode: document.querySelector("#mobile-expected-mode-button"),
   pageTitle: document.querySelector("#page-title"),
   count: document.querySelector("#question-count"),
   status: document.querySelector("#load-status"),
@@ -659,8 +661,12 @@ function setMode(mode) {
 
   elements.pastMode.classList.toggle("active", mode === "past");
   elements.expectedMode.classList.toggle("active", mode === "expected");
+  elements.mobilePastMode.classList.toggle("active", mode === "past");
+  elements.mobileExpectedMode.classList.toggle("active", mode === "expected");
   elements.pastMode.setAttribute("aria-current", mode === "past" ? "page" : "false");
   elements.expectedMode.setAttribute("aria-current", mode === "expected" ? "page" : "false");
+  elements.mobilePastMode.setAttribute("aria-current", mode === "past" ? "page" : "false");
+  elements.mobileExpectedMode.setAttribute("aria-current", mode === "expected" ? "page" : "false");
   elements.pageTitle.textContent = mode === "expected" ? "기출 예상문제 풀기" : "기출문제 풀기";
   elements.count.textContent =
     mode === "expected"
@@ -908,6 +914,8 @@ function renderAll() {
 function bindEvents() {
   elements.pastMode.addEventListener("click", () => setMode("past"));
   elements.expectedMode.addEventListener("click", () => setMode("expected"));
+  elements.mobilePastMode.addEventListener("click", () => setMode("past"));
+  elements.mobileExpectedMode.addEventListener("click", () => setMode("expected"));
   elements.category.addEventListener("change", () => refreshExpectedView(true));
   elements.mix.addEventListener("change", () => refreshExpectedView(true));
   elements.shuffle.addEventListener("click", () => refreshExpectedView(true));

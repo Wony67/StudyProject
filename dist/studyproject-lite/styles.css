@@ -101,6 +101,10 @@ select {
   font-weight: 700;
 }
 
+.mobile-mode-nav {
+  display: none;
+}
+
 .content {
   min-width: 0;
   padding: 24px;
@@ -768,6 +772,32 @@ select {
 
   .content {
     padding: 16px;
+  }
+
+  .mobile-mode-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .mobile-mode-button {
+    min-height: 42px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .mobile-mode-button.active {
+    background: var(--accent);
+    color: #ffffff;
   }
 
   .controls,
