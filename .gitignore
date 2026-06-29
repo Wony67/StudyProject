@@ -1,0 +1,33 @@
+# Python/cache
+__pycache__/
+*.py[cod]
+
+# Local/editor noise
+.DS_Store
+Thumbs.db
+
+# Source collection archives and large study materials not needed by the lite app
+data/raw/
+data/pdf/
+data/question/
+data/processed/pdf/
+data/processed/mapping/
+data/processed/web_summary/
+data/processed/velog_summary/
+data/processed/display_migration_report.json
+data/processed/consolidated_knowledge_base.json
+data/processed/programming_question_pages.json
+data/processed/programming_questions.json
+data/processed/past_exam_pages.json
+
+# Keep app-ready problem data and images
+!data/
+!data/processed/
+!data/processed/past_questions.json
+!data/processed/expected_questions.json
+!data/processed/past_images/
+!data/processed/past_images/**
+
+# Keep generated distribution in git for easy download/use
+!dist/
+!dist/**

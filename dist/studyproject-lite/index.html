@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>정보처리기사 학습</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="학습 메뉴">
+        <div class="brand">
+          <strong>정보처리기사 실기</strong>
+          <span>오프라인 학습</span>
+        </div>
+        <nav class="main-nav">
+          <button id="past-mode-button" class="nav-item active" type="button" aria-current="page">
+            <span class="nav-icon" aria-hidden="true">Q</span>
+            기출문제 풀기
+          </button>
+          <button id="expected-mode-button" class="nav-item" type="button">
+            <span class="nav-icon" aria-hidden="true">?</span>
+            기출 예상문제 풀기
+          </button>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div>
+            <h1 id="page-title">기출문제 풀기</h1>
+            <p id="question-count">문제 데이터를 불러오는 중입니다.</p>
+          </div>
+          <div class="status-pill" id="load-status">Loading</div>
+        </header>
+
+        <section class="controls" aria-label="문제 선택">
+          <label class="past-filter">
+            <span>연도</span>
+            <select id="year-select"></select>
+          </label>
+          <label>
+            <span>회차</span>
+            <select id="round-select"></select>
+          </label>
+          <label>
+            <span>문항</span>
+            <select id="number-select"></select>
+          </label>
+          <label class="expected-filter" hidden>
+            <span>카테고리</span>
+            <select id="category-select"></select>
+          </label>
+          <label class="expected-filter" hidden>
+            <span>구성 방식</span>
+            <select id="mix-select">
+              <option value="fixed">고정 회차</option>
+              <option value="random">랜덤 회차</option>
+            </select>
+          </label>
+          <button id="shuffle-button" class="secondary-button expected-filter" type="button" hidden>랜덤 다시 만들기</button>
+          <div class="pager" aria-label="문제 이동">
+            <button id="prev-button" class="icon-button" type="button" title="이전 문제" aria-label="이전 문제">&lt;</button>
+            <button id="next-button" class="icon-button" type="button" title="다음 문제" aria-label="다음 문제">&gt;</button>
+          </div>
+        </section>
+
+        <section class="workspace">
+          <aside class="question-list-panel" aria-label="현재 회차 문제 목록">
+            <div class="panel-heading">
+              <strong id="exam-title">-</strong>
+              <span id="exam-progress">-</span>
+            </div>
+            <div id="question-list" class="question-list"></div>
+          </aside>
+
+          <article class="question-card" aria-live="polite">
+            <div class="question-meta">
+              <span id="question-badge">-</span>
+              <a id="source-link" href="#" target="_blank" rel="noreferrer">출처</a>
+            </div>
+            <h2 id="question-title">문제를 선택하세요</h2>
+            <div id="question-text" class="text-block"></div>
+            <div id="image-area" class="image-area"></div>
+            <div id="code-area" class="code-area"></div>
+            <div id="table-area" class="table-area"></div>
+            <div id="description-area" class="description-area"></div>
+            <div id="option-area" class="option-area"></div>
+            <div id="detail-area" class="detail-area"></div>
+            <div id="choice-area" class="choice-area"></div>
+            <div id="target-area" class="target-area"></div>
+            <div class="answer-actions">
+              <button id="toggle-answer" class="primary-button" type="button">해설보기</button>
+            </div>
+            <section id="answer-panel" class="answer-panel" hidden>
+              <h3>정답 및 해설</h3>
+              <section class="answer-section">
+                <h4>정답</h4>
+                <div id="answer-text" class="text-block"></div>
+              </section>
+              <section class="answer-section">
+                <h4>해설</h4>
+                <div id="explanation-text" class="text-block"></div>
+              </section>
+              <section id="basis-section" class="answer-section" hidden>
+                <h4>출제 근거</h4>
+                <div id="basis-text" class="text-block"></div>
+              </section>
+            </section>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="app-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

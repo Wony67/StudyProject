@@ -1,0 +1,54 @@
+name: Update distribution
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "index.html"
+      - "styles.css"
+      - "app.js"
+      - "data/processed/past_questions.json"
+      - "data/processed/expected_questions.json"
+      - "data/processed/past_images/**"
+      - "tools/build_app_data.py"
+      - "tools/build_distribution.py"
+      - ".github/workflows/update-distribution.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-distribution:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild app data
+        run: python .\tools\build_app_data.py
+
+      - name: Rebuild lite distribution
+        run: python .\tools\build_distribution.py
+
+      - name: Commit updated distribution
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app-data.js dist/studyproject-lite dist/studyproject-lite.zip
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "No distribution changes to commit."
+            exit 0
+          }
+          git commit -m "chore: update lite distribution [skip ci]"
+          git push
