@@ -29,6 +29,8 @@ const elements = {
   shuffle: document.querySelector("#shuffle-button"),
   prev: document.querySelector("#prev-button"),
   next: document.querySelector("#next-button"),
+  bottomPrev: document.querySelector("#bottom-prev-button"),
+  bottomNext: document.querySelector("#bottom-next-button"),
   examTitle: document.querySelector("#exam-title"),
   progress: document.querySelector("#exam-progress"),
   list: document.querySelector("#question-list"),
@@ -889,8 +891,12 @@ function renderQuestion() {
 }
 
 function renderButtons() {
-  elements.prev.disabled = state.currentIndex <= 0;
-  elements.next.disabled = state.currentIndex >= state.filtered.length - 1;
+  const isFirstQuestion = state.currentIndex <= 0;
+  const isLastQuestion = state.currentIndex >= state.filtered.length - 1;
+  elements.prev.disabled = isFirstQuestion;
+  elements.next.disabled = isLastQuestion;
+  elements.bottomPrev.disabled = isFirstQuestion;
+  elements.bottomNext.disabled = isLastQuestion;
 }
 
 function renderAll() {
@@ -910,6 +916,8 @@ function bindEvents() {
   elements.number.addEventListener("change", () => setCurrentByNumber(selectedNumber()));
   elements.prev.addEventListener("click", () => moveQuestion(-1));
   elements.next.addEventListener("click", () => moveQuestion(1));
+  elements.bottomPrev.addEventListener("click", () => moveQuestion(-1));
+  elements.bottomNext.addEventListener("click", () => moveQuestion(1));
   elements.toggleAnswer.addEventListener("click", () => {
     state.answerVisible = !state.answerVisible;
     renderQuestion();

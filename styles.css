@@ -189,6 +189,10 @@ select {
   align-self: end;
 }
 
+.bottom-pager {
+  display: none;
+}
+
 .icon-button,
 .primary-button,
 .secondary-button {
@@ -777,6 +781,19 @@ select {
 
   .question-list {
     max-height: 220px;
+  }
+
+  .bottom-pager {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 4px;
+  }
+
+  .bottom-pager .icon-button {
+    width: 52px;
+    height: 44px;
+    font-size: 18px;
   }
 }
 
